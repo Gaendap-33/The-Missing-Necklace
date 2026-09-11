@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Missing Necklace 🕵️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: #020617;
+            border-bottom: 2px solid #334155;
+        }
+
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        header p {
+            color: #cbd5e1;
+            font-size: 18px;
+        }
+
+        section {
+            max-width: 1000px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .story {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 15px;
+            line-height: 1.7;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #facc15;
+        }
+
+        .suspects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: 0.3s;
+            border: 1px solid #334155;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #facc15;
+        }
+
+        .emoji {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .clues {
+            display: grid;
+            gap: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            background: #334155;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #475569;
+        }
+
+        .clue {
+            display: none;
+            background: #0f172a;
+            padding: 15px;
+            margin-top: 8px;
+            border-radius: 8px;
+            color: #e2e8f0;
+        }
+
+        .solve {
+            text-align: center;
+            background: #172554;
+            border-radius: 15px;
+            padding: 35px;
+        }
+
+        .choices {
+            display: grid;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .choices button {
+            background: #2563eb;
+        }
+
+        .choices button:hover {
+            background: #1d4ed8;
+        }
+
+        #result {
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🕵️ The Missing Necklace</h1>
+    <p>A mysterious case needs YOU to solve it.</p>
+</header>
+
+<section>
+    <h2>📖 The Case</h2>
+
+    <div class="story">
+        <p>
+            Last night, a valuable diamond necklace disappeared from
+            the mansion during a dinner party.
+        </p>
+
+        <p>
+            Four people were inside the house when the necklace vanished.
+            Everyone claims they are innocent...
+        </p>
+
+        <br>
+
+        <p><strong>Your mission:</strong> Examine the suspects, discover the
+        clues, and identify who took the necklace!</p>
+    </div>
+</section>
+
+<section>
+    <h2>👤 Suspects</h2>
+
+    <div class="suspects">
+
+        <div class="card">
+            <div class="emoji">👩‍🍳</div>
+            <h3>Emma</h3>
+            <p>The chef. She says she was preparing dessert in the kitchen.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">🧑‍💼</div>
+            <h3>Daniel</h3>
+            <p>The family assistant. He says he was organizing documents.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">👨‍🎨</div>
+            <h3>Leo</h3>
+            <p>The artist. He says he was painting in the upstairs room.</p>
+        </div>
+
+        <div class="card">
+            <div class="emoji">👩‍🌸</div>
+            <h3>Sophia</h3>
+            <p>The guest. She says she was talking to other guests.</p>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h2>🔎 Discover the Clues</h2>
+
+    <div class="clues">
+
+        <div>
+            <button onclick="showClue(1)">🔍 Examine the Kitchen</button>
+            <div id="clue1" class="clue">
+                A plate of dessert was still unfinished. The kitchen was
+                recently used.
+            </div>
+        </div>
+
+        <div>
+            <button onclick="showClue(2)">🔍 Examine the Upstairs Room</button>
+            <div id="clue2" class="clue">
+                A painting was still wet, suggesting someone had been
+                working there recently.
+            </div>
+        </div>
+
+        <div>
+            <button onclick="showClue(3)">🔍 Examine the Study</button>
+            <div id="clue3" class="clue">
+                Important documents were scattered across the desk,
+                but nothing appeared stolen.
+            </div>
+        </div>
+
+        <div>
+            <button onclick="showClue(4)">🔍 Examine the Garden</button>
+            <div id="clue4" class="clue">
+                A small piece of blue fabric was found near the garden
+                entrance.
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="solve">
+
+        <h2>🧩 Solve the Case</h2>
+
+        <p>Who do you think took the necklace?</p>
+
+        <div class="choices">
+
+            <button onclick="checkAnswer('Emma')">👩‍🍳 Emma</button>
+
+            <button onclick="checkAnswer('Daniel')">🧑‍💼 Daniel</button>
+
+            <button onclick="checkAnswer('Leo')">👨‍🎨 Leo</button>
+
+            <button onclick="checkAnswer('Sophia')">👩‍🌸 Sophia</button>
+
+        </div>
+
+        <div id="result"></div>
+
+    </div>
+</section>
+
+<footer>
+    🕵️ Case File #001 | Created with HTML, CSS & JavaScript
+</footer>
+
+<script>
+
+    function showClue(number) {
+
+        let clue = document.getElementById("clue" + number);
+
+        if (clue.style.display === "block") {
+            clue.style.display = "none";
+        } else {
+            clue.style.display = "block";
+        }
+
+    }
+
+    function checkAnswer(answer) {
+
+        let result = document.getElementById("result");
+
+        if (answer === "Sophia") {
+
+            result.innerHTML =
+                "🎉 CASE SOLVED! Sophia took the necklace! The blue fabric matched her outfit.";
+
+        } else {
+
+            result.innerHTML =
+                "❌ Not quite! Look carefully at the clues and try again.";
+
+        }
+
+    }
+
+</script>
+
+</body>
+</html>
