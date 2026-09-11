@@ -1,165 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Missing Necklace 🕵️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Missing Necklace 🕵️</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: white;
-            min-height: 100vh;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #020617, #172554, #1e293b);
+    color: white;
+    min-height: 100vh;
+}
 
-        header {
-            text-align: center;
-            padding: 50px 20px;
-            background: #020617;
-            border-bottom: 2px solid #334155;
-        }
+header {
+    text-align: center;
+    padding: 55px 20px;
+    background: rgba(0,0,0,0.4);
+}
 
-        header h1 {
-            font-size: 42px;
-            margin-bottom: 12px;
-        }
+header h1 {
+    font-size: 45px;
+    margin-bottom: 12px;
+}
 
-        header p {
-            color: #cbd5e1;
-            font-size: 18px;
-        }
+header p {
+    color: #cbd5e1;
+    font-size: 18px;
+}
 
-        section {
-            max-width: 1000px;
-            margin: auto;
-            padding: 40px 20px;
-        }
+.game-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 20px;
+    background: #020617;
+    font-size: 20px;
+}
 
-        .story {
-            background: #1e293b;
-            padding: 25px;
-            border-radius: 15px;
-            line-height: 1.7;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
+.info-box {
+    background: #1e293b;
+    padding: 12px 22px;
+    border-radius: 12px;
+}
 
-        h2 {
-            margin-bottom: 20px;
-            color: #facc15;
-        }
+section {
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
+}
 
-        .suspects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
+h2 {
+    color: #facc15;
+    margin-bottom: 20px;
+}
 
-        .card {
-            background: #1e293b;
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-            transition: 0.3s;
-            border: 1px solid #334155;
-        }
+.story {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 15px;
+    line-height: 1.7;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
 
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: #facc15;
-        }
+.suspects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
 
-        .emoji {
-            font-size: 50px;
-            margin-bottom: 10px;
-        }
+.card {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid #334155;
+    transition: 0.3s;
+}
 
-        .card h3 {
-            margin-bottom: 10px;
-        }
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #facc15;
+}
 
-        .card p {
-            color: #cbd5e1;
-            line-height: 1.5;
-        }
+.emoji {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
 
-        .clues {
-            display: grid;
-            gap: 15px;
-        }
+.card p {
+    color: #cbd5e1;
+    line-height: 1.5;
+}
 
-        button {
-            width: 100%;
-            padding: 18px;
-            background: #334155;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+.clues {
+    display: grid;
+    gap: 15px;
+}
 
-        button:hover {
-            background: #475569;
-        }
+.clue-button {
+    width: 100%;
+    padding: 18px;
+    background: #334155;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        .clue {
-            display: none;
-            background: #0f172a;
-            padding: 15px;
-            margin-top: 8px;
-            border-radius: 8px;
-            color: #e2e8f0;
-        }
+.clue-button:hover {
+    background: #475569;
+    transform: scale(1.02);
+}
 
-        .solve {
-            text-align: center;
-            background: #172554;
-            border-radius: 15px;
-            padding: 35px;
-        }
+.clue {
+    display: none;
+    background: #0f172a;
+    padding: 18px;
+    margin-top: 8px;
+    border-radius: 8px;
+    color: #e2e8f0;
+    line-height: 1.5;
+}
 
-        .choices {
-            display: grid;
-            gap: 12px;
-            margin-top: 20px;
-        }
+.solve {
+    text-align: center;
+    background: #172554;
+    border-radius: 15px;
+    padding: 35px;
+}
 
-        .choices button {
-            background: #2563eb;
-        }
+.choices {
+    display: grid;
+    gap: 12px;
+    margin-top: 20px;
+}
 
-        .choices button:hover {
-            background: #1d4ed8;
-        }
+.choices button {
+    padding: 16px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        #result {
-            margin-top: 25px;
-            font-size: 20px;
-            font-weight: bold;
-        }
+.choices button:hover {
+    background: #1d4ed8;
+    transform: scale(1.03);
+}
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #94a3b8;
-        }
-    </style>
+#result {
+    margin-top: 25px;
+    font-size: 21px;
+    font-weight: bold;
+    min-height: 30px;
+}
+
+#restart {
+    display: none;
+    margin: 25px auto 0;
+    padding: 15px 30px;
+    background: #facc15;
+    color: #111827;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#restart:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #94a3b8;
+}
+
+.success {
+    animation: pop 0.6s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+</style>
 </head>
 
 <body>
 
 <header>
     <h1>🕵️ The Missing Necklace</h1>
-    <p>A mysterious case needs YOU to solve it.</p>
+    <p>A mysterious case needs YOU to solve it!</p>
 </header>
+
+<div class="game-info">
+    <div class="info-box">⏱️ Time: <span id="timer">60</span>s</div>
+    <div class="info-box">❤️ Lives: <span id="lives">3</span></div>
+    <div class="info-box">🏆 Score: <span id="score">100</span></div>
+</div>
 
 <section>
     <h2>📖 The Case</h2>
@@ -177,8 +231,10 @@
 
         <br>
 
-        <p><strong>Your mission:</strong> Examine the suspects, discover the
-        clues, and identify who took the necklace!</p>
+        <p>
+            <strong>Your mission:</strong> Examine the suspects,
+            discover the clues, and identify who took the necklace!
+        </p>
     </div>
 </section>
 
@@ -202,7 +258,7 @@
         <div class="card">
             <div class="emoji">👨‍🎨</div>
             <h3>Leo</h3>
-            <p>The artist. He says he was painting in the upstairs room.</p>
+            <p>The artist. He says he was painting upstairs.</p>
         </div>
 
         <div class="card">
@@ -220,34 +276,46 @@
     <div class="clues">
 
         <div>
-            <button onclick="showClue(1)">🔍 Examine the Kitchen</button>
+            <button class="clue-button" onclick="showClue(1)">
+                🔍 Examine the Kitchen
+            </button>
+
             <div id="clue1" class="clue">
-                A plate of dessert was still unfinished. The kitchen was
-                recently used.
+                A plate of dessert was still unfinished.
+                Emma appears to have been working there.
             </div>
         </div>
 
         <div>
-            <button onclick="showClue(2)">🔍 Examine the Upstairs Room</button>
+            <button class="clue-button" onclick="showClue(2)">
+                🔍 Examine the Upstairs Room
+            </button>
+
             <div id="clue2" class="clue">
-                A painting was still wet, suggesting someone had been
-                working there recently.
+                Leo's painting was still wet, suggesting he had
+                recently been working upstairs.
             </div>
         </div>
 
         <div>
-            <button onclick="showClue(3)">🔍 Examine the Study</button>
+            <button class="clue-button" onclick="showClue(3)">
+                🔍 Examine the Study
+            </button>
+
             <div id="clue3" class="clue">
                 Important documents were scattered across the desk,
-                but nothing appeared stolen.
+                but nothing appeared to be missing.
             </div>
         </div>
 
         <div>
-            <button onclick="showClue(4)">🔍 Examine the Garden</button>
+            <button class="clue-button" onclick="showClue(4)">
+                🔍 Examine the Garden
+            </button>
+
             <div id="clue4" class="clue">
-                A small piece of blue fabric was found near the garden
-                entrance.
+                A small piece of BLUE FABRIC was found near the garden
+                entrance. Sophia was wearing a blue outfit.
             </div>
         </div>
 
@@ -263,17 +331,29 @@
 
         <div class="choices">
 
-            <button onclick="checkAnswer('Emma')">👩‍🍳 Emma</button>
+            <button onclick="checkAnswer('Emma')">
+                👩‍🍳 Emma
+            </button>
 
-            <button onclick="checkAnswer('Daniel')">🧑‍💼 Daniel</button>
+            <button onclick="checkAnswer('Daniel')">
+                🧑‍💼 Daniel
+            </button>
 
-            <button onclick="checkAnswer('Leo')">👨‍🎨 Leo</button>
+            <button onclick="checkAnswer('Leo')">
+                👨‍🎨 Leo
+            </button>
 
-            <button onclick="checkAnswer('Sophia')">👩‍🌸 Sophia</button>
+            <button onclick="checkAnswer('Sophia')">
+                👩‍🌸 Sophia
+            </button>
 
         </div>
 
         <div id="result"></div>
+
+        <button id="restart" onclick="restartGame()">
+            🔄 Play Again
+        </button>
 
     </div>
 </section>
@@ -284,35 +364,132 @@
 
 <script>
 
-    function showClue(number) {
+let time = 60;
+let lives = 3;
+let score = 100;
+let gameOver = false;
 
-        let clue = document.getElementById("clue" + number);
+let timerInterval = setInterval(countdown, 1000);
 
-        if (clue.style.display === "block") {
-            clue.style.display = "none";
-        } else {
-            clue.style.display = "block";
+function countdown() {
+
+    if (time > 0 && !gameOver) {
+
+        time--;
+
+        document.getElementById("timer").textContent = time;
+
+        if (time <= 20) {
+            document.getElementById("timer").style.color = "#f87171";
         }
 
+    } else if (time === 0) {
+
+        endGame("⏰ TIME'S UP! The mystery remains unsolved.");
+
     }
+}
 
-    function checkAnswer(answer) {
+function showClue(number) {
 
-        let result = document.getElementById("result");
+    if (gameOver) return;
 
-        if (answer === "Sophia") {
+    let clue = document.getElementById("clue" + number);
 
-            result.innerHTML =
-                "🎉 CASE SOLVED! Sophia took the necklace! The blue fabric matched her outfit.";
+    if (clue.style.display === "block") {
+        clue.style.display = "none";
+    } else {
+        clue.style.display = "block";
+
+        if (score > 10) {
+            score -= 5;
+            document.getElementById("score").textContent = score;
+        }
+    }
+}
+
+function checkAnswer(answer) {
+
+    if (gameOver) return;
+
+    let result = document.getElementById("result");
+
+    if (answer === "Sophia") {
+
+        gameOver = true;
+        clearInterval(timerInterval);
+
+        score += time;
+
+        document.getElementById("score").textContent = score;
+
+        result.innerHTML =
+            "🎉 CASE SOLVED!<br><br>" +
+            "Sophia was the thief! 🕵️‍♀️<br>" +
+            "The blue fabric matched her outfit.<br><br>" +
+            "🏆 Final Score: " + score;
+
+        result.className = "success";
+
+        document.getElementById("restart").style.display = "block";
+
+    } else {
+
+        lives--;
+
+        document.getElementById("lives").textContent = lives;
+
+        score -= 15;
+
+        if (score < 0) score = 0;
+
+        document.getElementById("score").textContent = score;
+
+        if (lives <= 0) {
+
+            endGame(
+                "💔 GAME OVER! You ran out of detective lives.<br><br>" +
+                "The correct answer was Sophia."
+            );
 
         } else {
 
             result.innerHTML =
-                "❌ Not quite! Look carefully at the clues and try again.";
+                "❌ Wrong suspect! You lost a life. Try again!";
 
         }
-
     }
+}
+
+function endGame(message) {
+
+    gameOver = true;
+    clearInterval(timerInterval);
+
+    document.getElementById("result").innerHTML = message;
+    document.getElementById("restart").style.display = "block";
+}
+
+function restartGame() {
+
+    time = 60;
+    lives = 3;
+    score = 100;
+    gameOver = false;
+
+    document.getElementById("timer").textContent = time;
+    document.getElementById("lives").textContent = lives;
+    document.getElementById("score").textContent = score;
+    document.getElementById("result").innerHTML = "";
+
+    document.getElementById("restart").style.display = "none";
+
+    for (let i = 1; i <= 4; i++) {
+        document.getElementById("clue" + i).style.display = "none";
+    }
+
+    timerInterval = setInterval(countdown, 1000);
+}
 
 </script>
 
